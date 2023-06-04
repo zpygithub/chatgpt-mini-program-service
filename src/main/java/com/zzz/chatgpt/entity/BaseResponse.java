@@ -1,12 +1,9 @@
 package com.zzz.chatgpt.entity;
 
-import java.util.List;
-
 import lombok.Data;
 
-/**
- * @author plexpt
- */
+import java.util.List;
+
 @Data
 public class BaseResponse<T> {
     private String object;
@@ -15,7 +12,7 @@ public class BaseResponse<T> {
 
 
     @Data
-    public class Error {
+    public static class Error {
         private String message;
         private String type;
         private String param;

@@ -1,21 +1,13 @@
 package com.zzz.chatgpt;
 
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.http.ContentType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zzz.chatgpt.api.Api;
 import com.zzz.chatgpt.entity.chat.ChatCompletion;
 import com.zzz.chatgpt.entity.chat.Message;
-
-import java.net.Proxy;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.http.ContentType;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -25,18 +17,17 @@ import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 import okhttp3.sse.EventSources;
 
+import java.net.Proxy;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * open ai 客户端
- *
- * @author plexpt
  */
-
 @Slf4j
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChatGPTStream {
 
     private String apiKey;

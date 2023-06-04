@@ -1,16 +1,10 @@
 package com.zzz.chatgpt.entity.billing;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
-import lombok.Data;
-
-/**
- * 余额查询接口返回值
- *
- * @author plexpt
- */
 @Data
 public class UseageResponse {
 

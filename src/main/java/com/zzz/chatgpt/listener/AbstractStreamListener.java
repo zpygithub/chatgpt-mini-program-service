@@ -1,15 +1,10 @@
 package com.zzz.chatgpt.listener;
 
+import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.zzz.chatgpt.entity.chat.ChatChoice;
 import com.zzz.chatgpt.entity.chat.ChatCompletionResponse;
 import com.zzz.chatgpt.entity.chat.Message;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Consumer;
-
-import cn.hutool.core.util.StrUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -18,22 +13,15 @@ import okhttp3.Response;
 import okhttp3.sse.EventSource;
 import okhttp3.sse.EventSourceListener;
 
-/**
- * EventSource listener for chat-related events.
- *
- * @author plexpt
- */
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Consumer;
+
 @Slf4j
 public abstract class AbstractStreamListener extends EventSourceListener {
 
     protected String lastMessage = "";
 
-
-    /**
-     * Called when all new message are received.
-     *
-     * @param message the new message
-     */
     @Setter
     @Getter
     protected Consumer<String> onComplate = s -> {
@@ -85,7 +73,6 @@ public abstract class AbstractStreamListener extends EventSourceListener {
 
         if (text != null) {
             lastMessage += text;
-
             onMsg(text);
 
         }

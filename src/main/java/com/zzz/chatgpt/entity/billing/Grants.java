@@ -1,14 +1,10 @@
 package com.zzz.chatgpt.entity.billing;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.util.List;
 
-import lombok.Data;
-
-/**
- * @author plexpt
- */
 @Data
 public class Grants {
     private String object;

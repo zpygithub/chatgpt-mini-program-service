@@ -1,5 +1,10 @@
 package com.zzz.chatgpt;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.RandomUtil;
+import cn.hutool.http.ContentType;
+import cn.hutool.http.Header;
 import com.alibaba.fastjson.JSON;
 import com.zzz.chatgpt.api.Api;
 import com.zzz.chatgpt.entity.BaseResponse;
@@ -10,28 +15,9 @@ import com.zzz.chatgpt.entity.chat.ChatCompletion;
 import com.zzz.chatgpt.entity.chat.ChatCompletionResponse;
 import com.zzz.chatgpt.entity.chat.Message;
 import com.zzz.chatgpt.exception.ChatException;
-
-import java.math.BigDecimal;
-import java.net.Proxy;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.http.ContentType;
-import cn.hutool.http.Header;
 import io.reactivex.Single;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,19 +26,18 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.math.BigDecimal;
+import java.net.Proxy;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * open ai 客户端
- *
- * @author plexpt
  */
-
 @Slf4j
-@Getter
-@Setter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class ChatGPT {
     /**
      * keys
@@ -120,8 +105,7 @@ public class ChatGPT {
         if (Objects.nonNull(proxy)) {
             client.proxy(proxy);
         }
-        OkHttpClient httpClient = client.build();
-        this.okHttpClient = httpClient;
+        this.okHttpClient = client.build();
 
 
         this.apiClient = new Retrofit.Builder()

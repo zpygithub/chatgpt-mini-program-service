@@ -1,15 +1,12 @@
 package com.zzz.chatgpt.util;
 
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
 import lombok.experimental.UtilityClass;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @UtilityClass
 public class SseHelper {
 
-
     public void complete(SseEmitter sseEmitter) {
-
         try {
             sseEmitter.complete();
         } catch (Exception e) {

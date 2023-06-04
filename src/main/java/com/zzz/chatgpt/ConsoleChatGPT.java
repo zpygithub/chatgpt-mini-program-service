@@ -1,8 +1,11 @@
 package com.zzz.chatgpt;
 
+import cn.hutool.core.util.NumberUtil;
 import com.zzz.chatgpt.entity.chat.Message;
 import com.zzz.chatgpt.listener.ConsoleStreamListener;
 import com.zzz.chatgpt.util.Proxys;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,19 +18,10 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
 
-import cn.hutool.core.util.NumberUtil;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-
-
 /**
  * open ai 客户端
- *
- * @author plexpt
  */
-
 @Slf4j
-
 public class ConsoleChatGPT {
 
     public static Proxy proxy = Proxy.NO_PROXY;
