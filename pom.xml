@@ -3,38 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.plexpt</groupId>
-    <artifactId>chatgpt</artifactId>
+    <groupId>org.zzz</groupId>
+    <artifactId>chatgpt-mini-program-service</artifactId>
     <version>4.0.6</version>
-    <name>chatgpt</name>
-    <description>ChatGPT4.0、 ChatGPT Java SDK.</description>
-    <url>https://chat.plexpt.com</url>
-
-    <issueManagement>
-        <system>Github Issue</system>
-        <url>https://github.com/PlexPt/chatgpt-java/issues</url>
-    </issueManagement>
-
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://raw.githubusercontent.com/PlexPt/chatgpt-java/main/LICENSE</url>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <name>pt</name>
-            <email>plexpt@gmail.com</email>
-        </developer>
-    </developers>
-
-
-    <scm>
-        <connection>scm:git@github.com:plexpt/chatgpt-java.git</connection>
-        <developerConnection>scm:git@github.com:plexpt/chatgpt-java.git</developerConnection>
-        <url>git@github.com:plexpt/chatgpt-java.git</url>
-    </scm>
-
 
     <properties>
         <java.version>1.8</java.version>

@@ -24,7 +24,7 @@ public abstract class AbstractStreamListener extends EventSourceListener {
 
     @Setter
     @Getter
-    protected Consumer<String> onComplate = s -> {
+    protected Consumer<String> onComplete = s -> {
 
     };
 
@@ -58,7 +58,7 @@ public abstract class AbstractStreamListener extends EventSourceListener {
     @Override
     public void onEvent(EventSource eventSource, String id, String type, String data) {
         if (data.equals("[DONE]")) {
-            onComplate.accept(lastMessage);
+            onComplete.accept(lastMessage);
             return;
         }
 
@@ -74,46 +74,33 @@ public abstract class AbstractStreamListener extends EventSourceListener {
         if (text != null) {
             lastMessage += text;
             onMsg(text);
-
         }
-
     }
-
 
     @SneakyThrows
     @Override
     public void onFailure(EventSource eventSource, Throwable throwable, Response response) {
-
         try {
             log.error("Stream connection error: {}", throwable);
-
             String responseText = "";
-
             if (Objects.nonNull(response)) {
                 responseText = response.body().string();
             }
-
             log.error("response：{}", responseText);
 
             String forbiddenText = "Your access was terminated due to violation of our policies";
-
             if (StrUtil.contains(responseText, forbiddenText)) {
                 log.error("Chat session has been terminated due to policy violation");
                 log.error("检测到号被封了");
             }
 
             String overloadedText = "That model is currently overloaded with other requests.";
-
             if (StrUtil.contains(responseText, overloadedText)) {
                 log.error("检测到官方超载了，赶紧优化你的代码，做重试吧");
             }
-
             this.onError(throwable, responseText);
-
         } catch (Exception e) {
             log.warn("onFailure error:{}", e);
-            // do nothing
-
         } finally {
             eventSource.cancel();
         }

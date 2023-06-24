@@ -18,8 +18,6 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * 测试类
- *
- * @author plexpt
  */
 public class StreamTest {
 
@@ -67,7 +65,7 @@ public class StreamTest {
         SseStreamListener listener = new SseStreamListener(sseEmitter);
         Message message = Message.of(prompt);
 
-        listener.setOnComplate(msg -> {
+        listener.setOnComplete(msg -> {
             //回答完成，可以做一些事情
         });
         chatGPTStream.streamChatCompletion(Arrays.asList(message), listener);

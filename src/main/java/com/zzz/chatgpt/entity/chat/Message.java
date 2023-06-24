@@ -6,9 +6,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * @author plexpt
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

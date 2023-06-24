@@ -8,8 +8,6 @@ import lombok.Data;
 
 /**
  * chat答案类
- *
- * @author plexpt
  */
 @Data
 public class ChatCompletionResponse {

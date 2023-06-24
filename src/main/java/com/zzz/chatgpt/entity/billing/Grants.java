@@ -8,6 +8,7 @@ import java.util.List;
 @Data
 public class Grants {
     private String object;
+
     @JsonProperty("data")
     private List<Datum> data;
 

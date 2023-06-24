@@ -17,8 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * chat
- *
- * @author plexpt
  */
 @Data
 @Builder
