@@ -18,7 +18,6 @@ public class ChatContextHolder {
         return context.computeIfAbsent(id, k -> new ArrayList<>());
     }
 
-
     /**
      * 添加对话
      */
@@ -26,7 +25,6 @@ public class ChatContextHolder {
         Message message = Message.builder().content(msg).build();
         add(id, message);
     }
-
 
     /**
      * 添加对话

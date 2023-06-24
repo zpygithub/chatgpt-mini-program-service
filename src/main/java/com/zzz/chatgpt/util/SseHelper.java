@@ -15,7 +15,6 @@ public class SseHelper {
     }
 
     public void send(SseEmitter sseEmitter, Object data) {
-
         try {
             sseEmitter.send(data);
         } catch (Exception e) {

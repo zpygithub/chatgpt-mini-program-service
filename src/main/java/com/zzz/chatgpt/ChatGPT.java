@@ -45,18 +45,23 @@ public class ChatGPT {
     private String apiKey;
 
     private List<String> apiKeyList;
+
     /**
      * 自定义api host使用builder的方式构造client
      */
     @Builder.Default
     private String apiHost = Api.DEFAULT_API_HOST;
+
     private Api apiClient;
+
     private OkHttpClient okHttpClient;
+
     /**
      * 超时 默认300
      */
     @Builder.Default
     private long timeout = 300;
+
     /**
      * okhttp 代理
      */
@@ -122,9 +127,6 @@ public class ChatGPT {
 
     /**
      * 最新版的GPT-3.5 chat completion 更加贴近官方网站的问答模型
-     *
-     * @param chatCompletion 问答参数
-     * @return 答案
      */
     public ChatCompletionResponse chatCompletion(ChatCompletion chatCompletion) {
         Single<ChatCompletionResponse> chatCompletionResponse =
@@ -134,8 +136,6 @@ public class ChatGPT {
 
     /**
      * 简易版
-     *
-     * @param messages 问答参数
      */
     public ChatCompletionResponse chatCompletion(List<Message> messages) {
         ChatCompletion chatCompletion = ChatCompletion.builder().messages(messages).build();
@@ -147,7 +147,7 @@ public class ChatGPT {
      */
     public String chat(String message) {
         ChatCompletion chatCompletion = ChatCompletion.builder()
-                .messages(Arrays.asList(Message.of(message)))
+                .messages(Collections.singletonList(Message.of(message)))
                 .build();
         ChatCompletionResponse response = this.chatCompletion(chatCompletion);
         return response.getChoices().get(0).getMessage().getContent();
@@ -155,8 +155,6 @@ public class ChatGPT {
 
     /**
      * 余额查询
-     *
-     * @return
      */
     public CreditGrantsResponse creditGrants() {
         Single<CreditGrantsResponse> creditGrants = this.apiClient.creditGrants();
@@ -166,8 +164,6 @@ public class ChatGPT {
 
     /**
      * 余额查询
-     *
-     * @return
      */
     public BigDecimal balance() {
         Single<SubscriptionData> subscription = apiClient.subscription();
@@ -185,8 +181,6 @@ public class ChatGPT {
 
     /**
      * 余额查询
-     *
-     * @return
      */
     public static BigDecimal balance(String key) {
         ChatGPT chatGPT = ChatGPT.builder()

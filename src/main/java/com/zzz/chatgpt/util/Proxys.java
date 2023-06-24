@@ -9,7 +9,6 @@ import java.net.Proxy;
 @UtilityClass
 public class Proxys {
 
-
     /**
      * http 代理
      */

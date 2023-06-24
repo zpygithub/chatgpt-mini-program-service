@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit;
 public class ChatGPTStream {
 
     private String apiKey;
+
     private List<String> apiKeyList;
 
     private OkHttpClient okHttpClient;
@@ -45,6 +46,7 @@ public class ChatGPTStream {
      */
     @Builder.Default
     private Proxy proxy = Proxy.NO_PROXY;
+
     /**
      * 反向代理
      */
@@ -62,9 +64,7 @@ public class ChatGPTStream {
         if (Objects.nonNull(proxy)) {
             client.proxy(proxy);
         }
-
         okHttpClient = client.build();
-
         return this;
     }
 
@@ -72,11 +72,8 @@ public class ChatGPTStream {
     /**
      * 流式输出
      */
-    public void streamChatCompletion(ChatCompletion chatCompletion,
-                                     EventSourceListener eventSourceListener) {
-
+    public void streamChatCompletion(ChatCompletion chatCompletion, EventSourceListener eventSourceListener) {
         chatCompletion.setStream(true);
-
         try {
             EventSource.Factory factory = EventSources.createFactory(okHttpClient);
             ObjectMapper mapper = new ObjectMapper();
@@ -85,8 +82,6 @@ public class ChatGPTStream {
             if (apiKeyList != null && !apiKeyList.isEmpty()) {
                 key = RandomUtil.randomEle(apiKeyList);
             }
-
-
             Request request = new Request.Builder()
                     .url(apiHost + "v1/chat/completions")
                     .post(RequestBody.create(MediaType.parse(ContentType.JSON.getValue()),
@@ -94,7 +89,6 @@ public class ChatGPTStream {
                     .header("Authorization", "Bearer " + key)
                     .build();
             factory.newEventSource(request, eventSourceListener);
-
         } catch (Exception e) {
             log.error("请求出错：{}", e);
         }
@@ -103,14 +97,12 @@ public class ChatGPTStream {
     /**
      * 流式输出
      */
-    public void streamChatCompletion(List<Message> messages,
-                                     EventSourceListener eventSourceListener) {
+    public void streamChatCompletion(List<Message> messages, EventSourceListener eventSourceListener) {
         ChatCompletion chatCompletion = ChatCompletion.builder()
                 .messages(messages)
                 .stream(true)
                 .build();
         streamChatCompletion(chatCompletion, eventSourceListener);
     }
-
 
 }

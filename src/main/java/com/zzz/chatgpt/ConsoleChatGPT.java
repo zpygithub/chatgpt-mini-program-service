@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Collectors;
@@ -58,7 +59,7 @@ public class ConsoleChatGPT {
             // 输入代理端口
             System.out.println("请输入代理端口: ");
             String portStr = getInput("按两次回车以提交:\n");
-            Integer proxyPort = Integer.parseInt(portStr);
+            int proxyPort = Integer.parseInt(portStr);
 
             if (type.equals("http")) {
                 proxy = Proxys.http(proxyHost, proxyPort);
@@ -106,7 +107,7 @@ public class ConsoleChatGPT {
             listener.setOnComplate(msg -> {
                 countDownLatch.countDown();
             });
-            chatGPT.streamChatCompletion(Arrays.asList(message), listener);
+            chatGPT.streamChatCompletion(Collections.singletonList(message), listener);
 
             try {
                 countDownLatch.await();
@@ -149,7 +150,7 @@ public class ConsoleChatGPT {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return lines.stream().collect(Collectors.joining("\n"));
+        return String.join("\n", lines);
     }
 
 }
