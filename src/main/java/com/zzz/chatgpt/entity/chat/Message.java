@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class Message {
     /**

@@ -21,8 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 @Data
 @Builder
 @Slf4j
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ChatCompletion implements Serializable {
 
